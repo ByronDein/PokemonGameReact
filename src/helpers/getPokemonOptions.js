@@ -1,7 +1,7 @@
 import pokemonApi from '../api/pokemonApi';
 
 const createPokemonId = () => {
-    const pokemonsId = Array.from(Array(1025));
+    const pokemonsId = Array.from(Array(650));
 
     return pokemonsId.map((_, index) => index + 1);
     
