@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import pokemonApi from "../api/pokemonApi"
+import getPokemonOptions from "../helpers/getPokemonOptions";
 
 const PokemonPage = () => {
-    const [pokemonImg, setPokemonImg] = useState('')
-    pokemonApi.get('/1').then(resp => {
-        console.log(resp.data.sprites.front_default);
-        setPokemonImg(resp.data.sprites.other.dream_world.front_default)
-    })
+    const [pokemonImg, setPokemonImg] = useState([]);
+
+    const PokemonData = async () => {
+        const pokemonsid = await getPokemonOptions();
+        const randomPokemon = Math.floor(Math.random() * 4);
+        console.log(randomPokemon)
+        setPokemonImg(pokemonsid[0].data.sprites.front_default)
+    }
+    useEffect(() => {
+        PokemonData()
+
+    }, [])
+
+
+
     return (
         <div className='flex flex-col justify-center items-center '>
             <div>PokemonPage</div>
