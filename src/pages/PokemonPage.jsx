@@ -9,8 +9,8 @@ const PokemonPage = () => {
     const [loading, setLoading] = useState(true);
     const [score, setscore] = useState(0)
     const [message, setmessage] = useState('')
-    const [quantityOfQuestions, setquantityOfQuestions] = useState(0)
-    const [remainigQuestions, setremainigQuestions] = useState(15)
+    const [quantityOfQuestions, setquantityOfQuestions] = useState(15)
+    const [remainigQuestions, setremainigQuestions] = useState(0)
 
     useEffect(() => {
         setLoading(true);
@@ -29,12 +29,13 @@ const PokemonPage = () => {
                 }, );
             }
         };
-        if(quantityOfQuestions < remainigQuestions){
+        if(remainigQuestions < quantityOfQuestions  ){
 
             fetchPokemonData();
         }
         else {
             setmessage(`Tu puntuación final es: ${score}`);
+            setLoading(false);
         }
     }, [score, quantityOfQuestions, remainigQuestions]);
 
@@ -45,10 +46,16 @@ const PokemonPage = () => {
         }
     }, [pokemonSelected]);
 
+    const newGame = () => {
+        setscore(0);
+        setquantityOfQuestions(15);
+        setremainigQuestions(0);
+    }
+
     const checkAnswer = (id) => {
         console.log(id);
         console.log(pokemonSelected.id);
-        setquantityOfQuestions(quantityOfQuestions + 1)
+        setremainigQuestions(remainigQuestions + 1)
         if (parseInt(id) === pokemonSelected.id) {
             setscore(score + 1);
             setmessage(`Respuesta correcta es: ${pokemonSelected.name}`);
@@ -85,8 +92,10 @@ const PokemonPage = () => {
                         ))
                     }
                     your score is: {score}
-                    <h1>Questions: {quantityOfQuestions}</h1>
+                    <h1>Total Questions: {quantityOfQuestions}</h1>
+                    <h1>Remaining Questions: {quantityOfQuestions - remainigQuestions }</h1>
                     <h1>{message}</h1>
+                    { quantityOfQuestions === remainigQuestions ? <button className="p-2 bg-red-300 mt-2 rounded-lg" onClick={newGame}>New Game</button> : null}
                 </div>
             )}
         </>
