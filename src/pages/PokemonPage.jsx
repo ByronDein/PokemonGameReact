@@ -39,7 +39,7 @@ const PokemonPage = () => {
            setLoading(true);
            setTimeout(() => {
             navigate('/score');
-           }, 500);    
+           }, 500);
         }
     }, [score, quantityOfQuestions, remainigQuestions, navigate]);
 
@@ -50,11 +50,7 @@ const PokemonPage = () => {
         }
     }, [pokemonSelected]);
 
-    const newGame = () => {
-        setscore(0);
-        setquantityOfQuestions(15);
-        setremainigQuestions(0);
-    }
+   
 
     const checkAnswer = (id) => {
         console.log(id);
