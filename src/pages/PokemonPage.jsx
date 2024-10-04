@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CircleLoader } from 'react-spinners';
 import getPokemonOptions from "../helpers/getPokemonOptions";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const PokemonPage = () => {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ const PokemonPage = () => {
     const [loading, setLoading] = useState(true);
     const [score, setscore] = useState(0)
     const [message, setmessage] = useState('')
-    const [quantityOfQuestions, setquantityOfQuestions] = useState(1)
+    const [quantityOfQuestions, setquantityOfQuestions] = useState(15)
     const [remainigQuestions, setremainigQuestions] = useState(0)
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const PokemonPage = () => {
                     <h1>Remaining Questions: {quantityOfQuestions - remainigQuestions }</h1>
                     <h1>{message}</h1>
                   
-                   <input type="text" placeholder="Ingrese Su nombre para el ranking" className="bg-black" />
+                   {/* <input type="text" placeholder="Ingrese Su nombre para el ranking" className="bg-black" /> */}
                 </div>
             )}
         </>
