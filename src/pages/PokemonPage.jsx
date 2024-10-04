@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { CircleLoader } from 'react-spinners';
 import getPokemonOptions from "../helpers/getPokemonOptions";
+import { Link, useNavigate } from "react-router-dom";
 
 const PokemonPage = () => {
+    const navigate = useNavigate();
     const [pokemonImg, setPokemonImg] = useState('');
     const [pokemonInfo, setPokemonInfo] = useState([]);
     const [pokemonSelected, setPokemonSelected] = useState(0);
     const [loading, setLoading] = useState(true);
     const [score, setscore] = useState(0)
     const [message, setmessage] = useState('')
-    const [quantityOfQuestions, setquantityOfQuestions] = useState(15)
+    const [quantityOfQuestions, setquantityOfQuestions] = useState(1)
     const [remainigQuestions, setremainigQuestions] = useState(0)
 
     useEffect(() => {
@@ -34,10 +36,12 @@ const PokemonPage = () => {
             fetchPokemonData();
         }
         else {
-            setmessage(`Tu puntuación final es: ${score}`);
-            setLoading(false);
+           setLoading(true);
+           setTimeout(() => {
+            navigate('/score');
+           }, 500);    
         }
-    }, [score, quantityOfQuestions, remainigQuestions]);
+    }, [score, quantityOfQuestions, remainigQuestions, navigate]);
 
     useEffect(() => {
         if (pokemonSelected.id) {
@@ -95,7 +99,8 @@ const PokemonPage = () => {
                     <h1>Total Questions: {quantityOfQuestions}</h1>
                     <h1>Remaining Questions: {quantityOfQuestions - remainigQuestions }</h1>
                     <h1>{message}</h1>
-                    { quantityOfQuestions === remainigQuestions ? <button className="p-2 bg-red-300 mt-2 rounded-lg" onClick={newGame}>New Game</button> : null}
+                  
+                   <input type="text" placeholder="Ingrese Su nombre para el ranking" className="bg-black" />
                 </div>
             )}
         </>
