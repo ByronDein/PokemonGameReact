@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { CircleLoader } from 'react-spinners';
+import { useNavigate } from "react-router-dom";
 import getPokemonOptions from "../helpers/getPokemonOptions";
-import {  useNavigate } from "react-router-dom";
+import { ScoreContext } from "../contexts/ScoreContext";
+
 
 const PokemonPage = () => {
     const navigate = useNavigate();
+    const { score, setScore, quantityOfQuestions } = useContext(ScoreContext);
     const [pokemonImg, setPokemonImg] = useState('');
     const [pokemonInfo, setPokemonInfo] = useState([]);
     const [pokemonSelected, setPokemonSelected] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [score, setscore] = useState(0)
     const [message, setmessage] = useState('')
-    const [quantityOfQuestions, setquantityOfQuestions] = useState(15)
+
     const [remainigQuestions, setremainigQuestions] = useState(0)
 
     useEffect(() => {
@@ -27,19 +29,19 @@ const PokemonPage = () => {
                 console.error("Error fetching Pokemon data:", error);
             } finally {
                 setTimeout(() => {
-                    
-                }, );
+
+                },);
             }
         };
-        if(remainigQuestions < quantityOfQuestions  ){
+        if (remainigQuestions < quantityOfQuestions) {
 
             fetchPokemonData();
         }
         else {
-           setLoading(true);
-           setTimeout(() => {
-            navigate('/score');
-           }, 500);
+            setLoading(true);
+            setTimeout(() => {
+                navigate(`/score?score=${score}&quantityOfQuestions=${quantityOfQuestions}`);
+            }, 500);
         }
     }, [score, quantityOfQuestions, remainigQuestions, navigate]);
 
@@ -50,14 +52,14 @@ const PokemonPage = () => {
         }
     }, [pokemonSelected]);
 
-   
+
 
     const checkAnswer = (id) => {
         console.log(id);
         console.log(pokemonSelected.id);
         setremainigQuestions(remainigQuestions + 1)
         if (parseInt(id) === pokemonSelected.id) {
-            setscore(score + 1);
+            setScore(score + 1);
             setmessage(`Respuesta correcta es: ${pokemonSelected.name}`);
         } else {
             setmessage(`Respuesta Incorrecta era: ${pokemonSelected.name}`);
@@ -87,16 +89,16 @@ const PokemonPage = () => {
                     {
                         pokemonInfo.map((pokemon) => (
                             <div className="mt-3" key={pokemon.data.id}>
-                                <button className="p-4 bg-red-500 w-52  text-white" onClick={(e)=> checkAnswer(e.target.value)} value={pokemon.data.id} >{pokemon.data.name}</button>
+                                <button className="p-4 bg-red-500 w-52  text-white" onClick={(e) => checkAnswer(e.target.value)} value={pokemon.data.id} >{pokemon.data.name}</button>
                             </div>
                         ))
                     }
-                    your score is: {score}
+
                     <h1>Total Questions: {quantityOfQuestions}</h1>
-                    <h1>Remaining Questions: {quantityOfQuestions - remainigQuestions }</h1>
+                    <h1>Remaining Questions: {quantityOfQuestions - remainigQuestions}</h1>
                     <h1>{message}</h1>
-                  
-                   {/* <input type="text" placeholder="Ingrese Su nombre para el ranking" className="bg-black" /> */}
+
+                    {/* <input type="text" placeholder="Ingrese Su nombre para el ranking" className="bg-black" /> */}
                 </div>
             )}
         </>
