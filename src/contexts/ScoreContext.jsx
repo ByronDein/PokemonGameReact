@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 export const ScoreContext = createContext();
 
 export const ScoreProvider = ({children}) => {
-    const [score, setscore] = useState(0)
-    const [quantityOfQuestions, setquantityOfQuestions] = useState(0)
+    const [score, setScore] = useState(0)
+    const [quantityOfQuestions, setquantityOfQuestions] = useState(1)
 
     return (
-        <ScoreContext.Provider value={{score, setscore, quantityOfQuestions, setquantityOfQuestions}}>
+        <ScoreContext.Provider value={{score, setScore, quantityOfQuestions, setquantityOfQuestions}}>
             {children}
         </ScoreContext.Provider>
     )

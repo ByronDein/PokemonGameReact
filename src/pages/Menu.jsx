@@ -3,7 +3,6 @@ import PokemonPage from './PokemonPage'
 
 const Menu = () => {
 const [quantityOfQuestions, setquantityOfQuestions] = useState(0)
-console.log(quantityOfQuestions)
   return (
     <div>
         <h1>

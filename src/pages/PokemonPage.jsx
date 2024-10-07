@@ -40,7 +40,7 @@ const PokemonPage = () => {
         else {
             setLoading(true);
             setTimeout(() => {
-                navigate(`/score?score=${score}&quantityOfQuestions=${quantityOfQuestions}`);
+                navigate('/score');
             }, 500);
         }
     }, [score, quantityOfQuestions, remainigQuestions, navigate]);
@@ -55,8 +55,6 @@ const PokemonPage = () => {
 
 
     const checkAnswer = (id) => {
-        console.log(id);
-        console.log(pokemonSelected.id);
         setremainigQuestions(remainigQuestions + 1)
         if (parseInt(id) === pokemonSelected.id) {
             setScore(score + 1);
@@ -67,7 +65,6 @@ const PokemonPage = () => {
         }
     }
 
-    console.log(pokemonInfo);
 
     return (
         <>
