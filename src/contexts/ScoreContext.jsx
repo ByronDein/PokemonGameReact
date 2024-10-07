@@ -6,7 +6,7 @@ export const ScoreContext = createContext();
 
 export const ScoreProvider = ({children}) => {
     const [score, setScore] = useState(0)
-    const [quantityOfQuestions, setquantityOfQuestions] = useState(1)
+    const [quantityOfQuestions, setquantityOfQuestions] = useState(15)
 
     return (
         <ScoreContext.Provider value={{score, setScore, quantityOfQuestions, setquantityOfQuestions}}>
