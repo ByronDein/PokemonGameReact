@@ -11,8 +11,14 @@ const FinalScore = () => {
     }
 
     const saveScore = () => {
-        // Implementar función para guardar el score en el backend
         console.log('Guardando score');
+        const response = axios.post('http://localhost:3001/scores', {
+            name: 'Nombre',
+            score: score,
+            totalQuestions: quantityOfQuestions
+        }
+        )
+        console.log(response);
     }
 
     return (
