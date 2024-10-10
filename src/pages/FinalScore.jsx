@@ -12,13 +12,13 @@ const FinalScore = () => {
 
     const saveScore = () => {
         console.log('Guardando score');
-        const response = axios.post('http://localhost:3001/scores', {
-            name: 'Nombre',
-            score: score,
-            totalQuestions: quantityOfQuestions
-        }
-        )
-        console.log(response);
+        // const response = axios.post('http://localhost:3001/scores', {
+        //     name: 'Nombre',
+        //     score: score,
+        //     totalQuestions: quantityOfQuestions
+        // }
+        // )
+        // console.log(response);
     }
 
     return (
