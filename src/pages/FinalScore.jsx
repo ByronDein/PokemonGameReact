@@ -21,6 +21,8 @@ const FinalScore = () => {
         // console.log(response);
     }
 
+
+
     return (
         <div className="flex flex-col justify-center items-center mt-20">
             <h2>¡Felicidades! Has completado el juego</h2>
@@ -29,8 +31,8 @@ const FinalScore = () => {
             <label className="mt-5 ">
             Ingrese su nombre para el ranking:
             </label>
-            <input type="text" className="p-2 w-52 my-2 border-2 border-gray-600 rounded-lg" />
-            <button className="p-2 w-52 my-2 bg-green-300 rounded-lg" onClick={()=> saveScore()}>Enviar</button>
+            <input type="text" className="p-2 w-52 my-3 border-2 border-gray-600 rounded-lg" />
+            <button className="p-2 w-52 my-3 bg-green-300 rounded-lg" onClick={()=> saveScore()}>Enviar</button>
             <button className="p-2 w-52 bg-red-300 rounded-lg" onClick={newGame}>Jugar de nuevo</button>
         </div>
     )
